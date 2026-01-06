@@ -4,17 +4,17 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 
-% TokyoNight Storm color scheme
-\definecolor{tnbg}{RGB}{36,40,59}        % #24283b
-\definecolor{tnfg}{RGB}{169,177,214}     % #a9b1d6
-\definecolor{tncomment}{RGB}{92,103,153} % #5c6799
-\definecolor{tncyan}{RGB}{125,207,255}   % #7dcfff
-\definecolor{tngreen}{RGB}{158,206,106}  % #9ece6a
-\definecolor{tnorange}{RGB}{255,158,100} % #ff9e64
-\definecolor{tnpink}{RGB}{187,154,247}   % #bb9af7
-\definecolor{tnpurple}{RGB}{138,111,207} % #8e70d4
-\definecolor{tnred}{RGB}{247,118,142}    % #f7768e
-\definecolor{tnyellow}{RGB}{224,175,104} % #e0af68
+% Dracula official color scheme (ct prefix)
+\definecolor{ctbg}{RGB}{40,42,54}        % #282a36
+\definecolor{ctfg}{RGB}{248,248,242}     % #f8f8f2
+\definecolor{ctcomment}{RGB}{98,114,164} % #6272a4
+\definecolor{ctcyan}{RGB}{139,233,253}   % #8be9fd
+\definecolor{ctgreen}{RGB}{80,250,123}   % #50fa7b
+\definecolor{ctorange}{RGB}{255,184,108} % #ffb86c
+\definecolor{ctpink}{RGB}{255,121,198}   % #ff79c6
+\definecolor{ctpurple}{RGB}{189,147,249} % #bd93f9
+\definecolor{ctred}{RGB}{255,85,85}      % #ff5555
+\definecolor{ctyellow}{RGB}{241,250,140} % #f1fa8c
 
 
 
@@ -38,10 +38,10 @@
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks=true,
-	linkcolor=tnpurple,
-	filecolor=tncyan,
-	urlcolor=tnpink,
-	citecolor=tngreen,
+	linkcolor=ctpurple,
+	filecolor=ctcyan,
+	urlcolor=ctpink,
+	citecolor=ctgreen,
 	pdftitle={Docker},
 	pdfauthor={Aditya Kumar},
 	bookmarks=true,
@@ -53,9 +53,9 @@
 
 \newcommand{\rexample}[1]{%
 	\par\vspace{1ex}%
-	\noindent\fcolorbox{draculapurple}{draculabg}{%
+	\noindent\fcolorbox{ctpurple}{ctbg}{%
 		\begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
-			\color{draculacyan}%
+			\color{ctcyan}%
 			#1%
 		\end{minipage}%
 	}%
@@ -105,8 +105,8 @@
 \usepackage{listings}
 \lstset{
 	language=Python,
-	basicstyle=\ttfamily\small\color{draculafg},
-	backgroundcolor=\color{draculabg},
+	basicstyle=\ttfamily\small\color{ctfg},
+	backgroundcolor=\color{ctbg},
 	aboveskip={1.0\baselineskip},
 	belowskip={1.0\baselineskip},
 	columns=fixed,
@@ -115,15 +115,15 @@
 	tabsize=4,
 	prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
 	frame=lines,
-	rulecolor=\color{draculacomment},
+	rulecolor=\color{ctcomment},
 	showtabs=false,
 	showspaces=false,
 	showstringspaces=false,
-	keywordstyle=\color{draculapink},
-	commentstyle=\color{draculacomment},
-	stringstyle=\color{draculayellow},
+	keywordstyle=\color{ctpink},
+	commentstyle=\color{ctcomment},
+	stringstyle=\color{ctyellow},
 	numbers=left,
-	numberstyle=\small\color{draculacomment},
+	numberstyle=\small\color{ctcomment},
 	stepnumber=1,
 	numbersep=10pt,
 	captionpos=t,
@@ -133,12 +133,12 @@
 %%%----------%%%----------%%%----------%%%----------%%%
 
 \begin{document}
-	\pagecolor{tnbg}
+	\pagecolor{ctbg}
 	\title{docker-template}
 	\author{Aditya Kumar}
 	\date{01/08/2025}
-%	\maketitle
+	\maketitle
 	\tableofcontents
 	this is test
-%	\newpage
+	\newpage
 \end{document}
