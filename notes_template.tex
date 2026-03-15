@@ -132,186 +132,405 @@
 \setlength{\parindent}{1cm}
 
 % ============================================================
-%  CUSTOM EXPLANATION & ANALYSIS BOXES — Tokyo Night Dark
+%  CUSTOM NOTE-STYLE BOXES — Tokyo Night Dark
+%  Inspired by the note box style in your template
 % ============================================================
 
 % ----------------------------------------
-% LAYER 1 — Explain Like I'm 5 (Yellow, friendly)
+% LAYER 1 — Explain Like I'm 5 (Yellow - friendly/approachable)
 % ----------------------------------------
 \newtcolorbox{layerELI5}[1][]{%
-    enhanced, breakable,
-    colback=tnBgHL, coltext=tnFg,
-    frame hidden, boxrule=0sp,
-    borderline west={2pt}{0pt}{tnYellow},
-    sharp corners,
-    title={\textbf{\textcolor{tnYellow}{LAYER 1 — Explain Like I'm 5}}},
-    attach title to upper,
-    before upper=\par\smallskip,
-    fonttitle=\bfseries\sffamily,
-    #1
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnYellow,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnYellow}{LAYER 1 — Explain Like I'm 5}},
+	halign title=flush center,
+	coltitle=tnYellow,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=1.5cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnYellow,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnYellow]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
 }
 
 % ----------------------------------------
-% LAYER 2 — The Real Explanation (Blue, standard)
+% LAYER 2 — The Real Explanation (Blue - standard/technical)
 % ----------------------------------------
 \newtcolorbox{layerReal}[1][]{%
-    enhanced, breakable,
-    colback=tnBgHL, coltext=tnFg,
-    frame hidden, boxrule=0sp,
-    borderline west={2pt}{0pt}{tnBlue},
-    sharp corners,
-    title={\textbf{\textcolor{tnBlue}{LAYER 2 — The Real Explanation}}},
-    attach title to upper,
-    before upper=\par\smallskip,
-    fonttitle=\bfseries\sffamily,
-    #1
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnBlue,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnBlue}{LAYER 2 — The Real Explanation}},
+	halign title=flush center,
+	coltitle=tnBlue,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=1.5cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnBlue,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnBlue]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
 }
 
 % ----------------------------------------
-% LAYER 3 — Key Takeaways (Green, summary)
+% LAYER 3 — Key Takeaways (Green - summary/actionable)
 % ----------------------------------------
 \newtcolorbox{layerTakeaways}[1][]{%
-    enhanced, breakable,
-    colback=tnBgHL, coltext=tnFg,
-    frame hidden, boxrule=0sp,
-    borderline west={2pt}{0pt}{tnGreen},
-    sharp corners,
-    title={\textbf{\textcolor{tnGreen}{LAYER 3 — Key Takeaways}}},
-    attach title to upper,
-    before upper=\par\smallskip,
-    fonttitle=\bfseries\sffamily,
-    #1
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnGreen,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnGreen}{LAYER 3 — Key Takeaways}},
+	halign title=flush center,
+	coltitle=tnGreen,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=1.5cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnGreen,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnGreen]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
 }
 
 % ----------------------------------------
-% MISCONCEPTION ALERT (Red, warning style)
+% MISCONCEPTION ALERT (Red/Magenta - warning/danger)
 % ----------------------------------------
 \newtcolorbox{misconception}[1][]{%
-    breakable, enhanced,
-    colback=tnBgHL, coltext=tnFg,
-    colframe=tnRed,
-    arc=0pt, outer arc=0pt,
-    fonttitle=\bfseries\sffamily\large,
-    colbacktitle=tnRed, coltitle=tnBgDark,
-    attach boxed title to top left={},
-    boxed title style={enhanced, skin=enhancedfirst jigsaw,
-        arc=3pt, bottom=0pt, interior style={fill=tnRed}},
-    title={\textcolor{tnBgDark}{\textbf{⚠ MISCONCEPTION ALERT}}},
-    #1
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnMagenta,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnMagenta}{MISCONCEPTION ALERT}},
+	halign title=flush center,
+	coltitle=tnMagenta,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=1.5cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnMagenta,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnMagenta]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
 }
 
 % ----------------------------------------
-% OPTIONAL — Further Exploration (Purple, curiosity)
+% OPTIONAL — Further Exploration (Purple - curiosity/extra)
 % ----------------------------------------
 \newtcolorbox{optionalExplore}[1][]{%
-    enhanced, breakable,
-    colback=tnBgHL, coltext=tnFg,
-    frame hidden, boxrule=0sp,
-    borderline west={2pt}{0pt}{tnPurple},
-    sharp corners,
-    title={\textbf{\textcolor{tnPurple}{OPTIONAL — Further Exploration}}},
-    attach title to upper,
-    before upper=\par\smallskip,
-    fonttitle=\bfseries\sffamily,
-    #1
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnPurple,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnPurple}{OPTIONAL — Further Exploration}},
+	halign title=flush center,
+	coltitle=tnPurple,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=1.5cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnPurple,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnPurple]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
 }
 
 % ----------------------------------------
-% Core Idea (Cyan, central concept)
+% Core Idea (Cyan - central/fundamental)
 % ----------------------------------------
 \newtcolorbox{coreIdea}[1][]{%
-    enhanced, breakable,
-    colback=tnBgHL, coltext=tnFg,
-    frame hidden, boxrule=0sp,
-    borderline west={2pt}{0pt}{tnCyan},
-    sharp corners,
-    title={\textbf{\textcolor{tnCyan}{Core Idea}}},
-    attach title to upper,
-    before upper=\par\smallskip,
-    fonttitle=\bfseries\sffamily,
-    #1
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnCyan,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnCyan}{Core Idea}},
+	halign title=flush center,
+	coltitle=tnCyan,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=1.5cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnCyan,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnCyan]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
 }
 
 % ----------------------------------------
-% Key Arguments / Findings (Blue)
+% Key Arguments / Findings (Blue - analytical)
 % ----------------------------------------
 \newtcolorbox{keyArgs}[1][]{%
-    enhanced, breakable,
-    colback=tnBgHL, coltext=tnFg,
-    frame hidden, boxrule=0sp,
-    borderline west={2pt}{0pt}{tnBlue},
-    sharp corners,
-    title={\textbf{\textcolor{tnBlue}{Key Arguments / Findings}}},
-    attach title to upper,
-    before upper=\par\smallskip,
-    fonttitle=\bfseries\sffamily,
-    #1
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnBlue,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnBlue}{Key Arguments / Findings}},
+	halign title=flush center,
+	coltitle=tnBlue,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=1.5cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnBlue,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnBlue]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
 }
 
 % ----------------------------------------
-% Methodology (Teal)
+% Methodology (Teal - process/method)
 % ----------------------------------------
 \newtcolorbox{methodology}[1][]{%
-    enhanced, breakable,
-    colback=tnBgHL, coltext=tnFg,
-    frame hidden, boxrule=0sp,
-    borderline west={2pt}{0pt}{tnTeal},
-    sharp corners,
-    title={\textbf{\textcolor{tnTeal}{Methodology}}},
-    attach title to upper,
-    before upper=\par\smallskip,
-    fonttitle=\bfseries\sffamily,
-    #1
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnTeal,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnTeal}{Methodology}},
+	halign title=flush center,
+	coltitle=tnTeal,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=1.5cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnTeal,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnTeal]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
 }
 
 % ----------------------------------------
-% Contributions (Green)
+% Contributions (Green - positive/achievements)
 % ----------------------------------------
 \newtcolorbox{contributions}[1][]{%
-    enhanced, breakable,
-    colback=tnBgHL, coltext=tnFg,
-    frame hidden, boxrule=0sp,
-    borderline west={2pt}{0pt}{tnGreen},
-    sharp corners,
-    title={\textbf{\textcolor{tnGreen}{Contributions}}},
-    attach title to upper,
-    before upper=\par\smallskip,
-    fonttitle=\bfseries\sffamily,
-    #1
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnGreen,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnGreen}{Contributions}},
+	halign title=flush center,
+	coltitle=tnGreen,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=1.5cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnGreen,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnGreen]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
 }
 
 % ----------------------------------------
-% Limitations / Criticism (Orange, caution)
+% Limitations / Criticism (Orange - caution/issues)
 % ----------------------------------------
 \newtcolorbox{limitations}[1][]{%
-    enhanced, breakable,
-    colback=tnBgHL, coltext=tnFg,
-    frame hidden, boxrule=0sp,
-    borderline west={2pt}{0pt}{tnOrange},
-    sharp corners,
-    title={\textbf{\textcolor{tnOrange}{Limitations / Criticism}}},
-    attach title to upper,
-    before upper=\par\smallskip,
-    fonttitle=\bfseries\sffamily,
-    #1
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnOrange,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnOrange}{Limitations / Criticism}},
+	halign title=flush center,
+	coltitle=tnOrange,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=1.5cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnOrange,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnOrange]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
 }
 
 % ----------------------------------------
-% Discussion Points (Purple)
+% Discussion Points (Purple - thought-provoking)
 % ----------------------------------------
 \newtcolorbox{discussion}[1][]{%
-    enhanced, breakable,
-    colback=tnBgHL, coltext=tnFg,
-    frame hidden, boxrule=0sp,
-    borderline west={2pt}{0pt}{tnPurple},
-    sharp corners,
-    title={\textbf{\textcolor{tnPurple}{Discussion Points}}},
-    attach title to upper,
-    before upper=\par\smallskip,
-    fonttitle=\bfseries\sffamily,
-    #1
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnPurple,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnPurple}{Discussion Points}},
+	halign title=flush center,
+	coltitle=tnPurple,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=1.5cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnPurple,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnPurple]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
 }
-
 %================================
 % THEOREM
 %================================
