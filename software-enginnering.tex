@@ -1,0 +1,1167 @@
+% ============================================================
+%  NOTES TEMPLATE — Tokyo Night Dark
+%  Merged from: preamble.tex, macros.tex, letterfonts.tex
+%  Usage: fill in \COURSE, \AUTHOR, \SEMESTER, then write!
+% ============================================================
+\documentclass{report}
+
+% ----------------------------------------------------------------
+%  GEOMETRY & CORE PACKAGES
+% ----------------------------------------------------------------
+\usepackage[tmargin=2cm,rmargin=1in,lmargin=1in,margin=0.85in,bmargin=2cm,footskip=.2in]{geometry}
+\usepackage{amsmath,amsfonts,amsthm,amssymb,mathtools}
+% \usepackage[varbb]{newpxmath}  % requires binhex.tex — disabled
+\usepackage{amsmath}            % already loaded above but harmless
+% varbb alternative: use \varmathbb from mathalpha if available,
+% otherwise the standard \mathbb from amssymb is used automatically
+\usepackage{fontspec}
+\setmonofont{Maple Mono}[
+    Contextuals = Alternate,  % enables ligatures
+    Scale       = 0.9,
+]
+\usepackage{xfrac}
+\usepackage[makeroom]{cancel}
+\usepackage{bookmark}
+\usepackage{enumitem}
+\usepackage[most,many,breakable]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{varwidth}
+\usepackage{etoolbox}
+\usepackage{nameref}
+\usepackage{multicol,array}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{comment}
+\usepackage{listings}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{chngcntr}
+\usepackage{tikz}
+\usepackage{titletoc}
+\usepackage{tikzsymbols}
+\usepackage{hyperref,theoremref}
+
+% ----------------------------------------------------------------
+%  TOKYO NIGHT DARK — COLOUR PALETTE
+%  https://github.com/folke/tokyonight.nvim  (storm/night variant)
+% ----------------------------------------------------------------
+% --- base ---
+% =============================================================================
+% Tokyo Night Ultra Dark High Contrast - LaTeX Color Scheme
+% Based on Base16 Tokyo Night Storm with enhanced contrast
+% =============================================================================
+
+% --- Background colours ---
+\definecolor{tnBg}        {HTML}{13141F}   % base00 - Background (Much Darker)
+\definecolor{tnBgDark}    {HTML}{0F0F14}   % crust  - Darkest bg (for panels)
+\definecolor{tnBgHL}      {HTML}{1F202E}   % base01 - Highlight bg (Selection)
+
+% --- Foreground colours ---
+\definecolor{tnFg}        {HTML}{C0CAF5}   % base05 - Foreground (Much Brighter)
+\definecolor{tnFgDark}    {HTML}{565F89}   % base03 - Dim foreground (Comments)
+\definecolor{tnComment}   {HTML}{565F89}   % base03 - Comments / muted (Brighter)
+
+% --- Accent colours ---
+\definecolor{tnBlue}      {HTML}{89DDFF}   % base0D - Blue (Brighter)
+\definecolor{tnCyan}      {HTML}{7FFFD4}   % base0C - Cyan (Brighter)
+\definecolor{tnGreen}     {HTML}{9ECE6A}   % base0B - Green (Much Brighter)
+\definecolor{tnTeal}      {HTML}{7FFFD4}   % base0C - Teal (Match cyan)
+\definecolor{tnPurple}    {HTML}{C099FF}   % base0E - Purple (Brighter)
+\definecolor{tnMagenta}   {HTML}{FF7A93}   % base08 - Magenta / Pink (More Vibrant)
+\definecolor{tnOrange}    {HTML}{FF9E64}   % base09 - Orange (Same)
+\definecolor{tnRed}       {HTML}{FF7A93}   % base08 - Red (More Vibrant)
+\definecolor{tnYellow}    {HTML}{FFD173}   % base0A - Yellow (Brighter)
+
+% --- Additional utility colours ---
+\definecolor{tnWhite}     {HTML}{FFFFFF}   % base07 - Pure White
+\definecolor{tnSurface0}  {HTML}{2A2B3D}   % base02 - Status Bar / Surface
+\definecolor{tnSurface1}  {HTML}{343A52}   % surface1 - Elevated surfaces
+\definecolor{tnOverlay0}  {HTML}{444B6A}   % overlay0 - Borders / Dividers
+\definecolor{tnOverlay2}  {HTML}{444B6A}   % overlay2 - Disabled elements
+
+% ----------------------------------------------------------------
+%  HYPERREF  (coloured links, Tokyo Night palette)
+% ----------------------------------------------------------------
+\hypersetup{
+    pdftitle={Notes},
+    colorlinks=true,
+    linkcolor=tnBlue,
+    urlcolor=tnCyan,
+    citecolor=tnGreen,
+    bookmarksnumbered=true,
+    bookmarksopen=true
+}
+
+% ----------------------------------------------------------------
+%  TIKZ CONFIG
+% ----------------------------------------------------------------
+\usetikzlibrary{arrows,calc,shadows.blur}
+\tikzset{
+    symbol/.style={
+        draw=none,
+        every to/.append style={
+            edge node={node [sloped, allow upside down, auto=false]{$#1$}}}
+    }
+}
+\tikzstyle{c} = [circle,fill=tnFg,scale=0.5]
+\tikzstyle{b} = [draw, thick, tnFg, -]
+\tikzset{
+    vertex/.style={
+        circle, draw, minimum size=6mm, inner sep=0pt,
+        draw=tnBlue, text=tnFg
+    }
+}
+
+\renewcommand\qedsymbol{$\Laughey$}
+
+% ----------------------------------------------------------------
+%  ALGORITHM COMMENT STYLE
+% ----------------------------------------------------------------
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{tnComment}{#1}}
+\SetCommentSty{mycommfont}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% ----------------------------------------------------------------
+%  TCOLORBOX SETUPS  (Tokyo Night Dark)
+% ----------------------------------------------------------------
+\tcbuselibrary{theorems,skins,hooks}
+\setlength{\parindent}{1cm}
+
+% ============================================================
+%  CUSTOM EXPLANATION & ANALYSIS BOXES — Tokyo Night Dark
+% ============================================================
+
+% ----------------------------------------
+% LAYER 1 — Explain Like I'm 5 (Yellow, friendly)
+% ----------------------------------------
+\newtcolorbox{layerELI5}[1][]{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnYellow},
+    sharp corners,
+    title={\textbf{\textcolor{tnYellow}{LAYER 1 — Explain Like I'm 5}}},
+    attach title to upper,
+    before upper=\par\smallskip,
+    fonttitle=\bfseries\sffamily,
+    #1
+}
+
+% ----------------------------------------
+% LAYER 2 — The Real Explanation (Blue, standard)
+% ----------------------------------------
+\newtcolorbox{layerReal}[1][]{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnBlue},
+    sharp corners,
+    title={\textbf{\textcolor{tnBlue}{LAYER 2 — The Real Explanation}}},
+    attach title to upper,
+    before upper=\par\smallskip,
+    fonttitle=\bfseries\sffamily,
+    #1
+}
+
+% ----------------------------------------
+% LAYER 3 — Key Takeaways (Green, summary)
+% ----------------------------------------
+\newtcolorbox{layerTakeaways}[1][]{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnGreen},
+    sharp corners,
+    title={\textbf{\textcolor{tnGreen}{LAYER 3 — Key Takeaways}}},
+    attach title to upper,
+    before upper=\par\smallskip,
+    fonttitle=\bfseries\sffamily,
+    #1
+}
+
+% ----------------------------------------
+% MISCONCEPTION ALERT (Red, warning style)
+% ----------------------------------------
+\newtcolorbox{misconception}[1][]{%
+    breakable, enhanced,
+    colback=tnBgHL, coltext=tnFg,
+    colframe=tnRed,
+    arc=0pt, outer arc=0pt,
+    fonttitle=\bfseries\sffamily\large,
+    colbacktitle=tnRed, coltitle=tnBgDark,
+    attach boxed title to top left={},
+    boxed title style={enhanced, skin=enhancedfirst jigsaw,
+        arc=3pt, bottom=0pt, interior style={fill=tnRed}},
+    title={\textcolor{tnBgDark}{\textbf{⚠ MISCONCEPTION ALERT}}},
+    #1
+}
+
+% ----------------------------------------
+% OPTIONAL — Further Exploration (Purple, curiosity)
+% ----------------------------------------
+\newtcolorbox{optionalExplore}[1][]{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnPurple},
+    sharp corners,
+    title={\textbf{\textcolor{tnPurple}{OPTIONAL — Further Exploration}}},
+    attach title to upper,
+    before upper=\par\smallskip,
+    fonttitle=\bfseries\sffamily,
+    #1
+}
+
+% ----------------------------------------
+% Core Idea (Cyan, central concept)
+% ----------------------------------------
+\newtcolorbox{coreIdea}[1][]{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnCyan},
+    sharp corners,
+    title={\textbf{\textcolor{tnCyan}{Core Idea}}},
+    attach title to upper,
+    before upper=\par\smallskip,
+    fonttitle=\bfseries\sffamily,
+    #1
+}
+
+% ----------------------------------------
+% Key Arguments / Findings (Blue)
+% ----------------------------------------
+\newtcolorbox{keyArgs}[1][]{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnBlue},
+    sharp corners,
+    title={\textbf{\textcolor{tnBlue}{Key Arguments / Findings}}},
+    attach title to upper,
+    before upper=\par\smallskip,
+    fonttitle=\bfseries\sffamily,
+    #1
+}
+
+% ----------------------------------------
+% Methodology (Teal)
+% ----------------------------------------
+\newtcolorbox{methodology}[1][]{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnTeal},
+    sharp corners,
+    title={\textbf{\textcolor{tnTeal}{Methodology}}},
+    attach title to upper,
+    before upper=\par\smallskip,
+    fonttitle=\bfseries\sffamily,
+    #1
+}
+
+% ----------------------------------------
+% Contributions (Green)
+% ----------------------------------------
+\newtcolorbox{contributions}[1][]{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnGreen},
+    sharp corners,
+    title={\textbf{\textcolor{tnGreen}{Contributions}}},
+    attach title to upper,
+    before upper=\par\smallskip,
+    fonttitle=\bfseries\sffamily,
+    #1
+}
+
+% ----------------------------------------
+% Limitations / Criticism (Orange, caution)
+% ----------------------------------------
+\newtcolorbox{limitations}[1][]{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnOrange},
+    sharp corners,
+    title={\textbf{\textcolor{tnOrange}{Limitations / Criticism}}},
+    attach title to upper,
+    before upper=\par\smallskip,
+    fonttitle=\bfseries\sffamily,
+    #1
+}
+
+% ----------------------------------------
+% Discussion Points (Purple)
+% ----------------------------------------
+\newtcolorbox{discussion}[1][]{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnPurple},
+    sharp corners,
+    title={\textbf{\textcolor{tnPurple}{Discussion Points}}},
+    attach title to upper,
+    before upper=\par\smallskip,
+    fonttitle=\bfseries\sffamily,
+    #1
+}
+
+%================================
+% THEOREM
+%================================
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnBlue},
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=tnBlue, fonttitle=\bfseries\sffamily,
+    description font=\mdseries, separator sign none,
+    segmentation style={solid, tnBlue},
+}{th}
+
+\newtcbtheorem[number within=chapter]{theorem}{Theorem}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnBlue},
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=tnBlue, fonttitle=\bfseries\sffamily,
+    description font=\mdseries, separator sign none,
+    segmentation style={solid, tnBlue},
+}{th}
+
+\newtcolorbox{Theoremcon}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnBlue},
+    sharp corners, description font=\mdseries, separator sign none,
+}
+
+%================================
+% COROLLARY
+%================================
+\newtcbtheorem[number within=section]{Corollary}{Corollary}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnPurple},
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=tnPurple, fonttitle=\bfseries\sffamily,
+    description font=\mdseries, separator sign none,
+    segmentation style={solid, tnPurple},
+}{th}
+
+\newtcbtheorem[number within=chapter]{corollary}{Corollary}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnPurple},
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=tnPurple, fonttitle=\bfseries\sffamily,
+    description font=\mdseries, separator sign none,
+    segmentation style={solid, tnPurple},
+}{th}
+
+%================================
+% LEMMA
+%================================
+\newtcbtheorem[number within=section]{Lemma}{Lemma}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnOrange},
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=tnOrange, fonttitle=\bfseries\sffamily,
+    description font=\mdseries, separator sign none,
+    segmentation style={solid, tnOrange},
+}{th}
+
+\newtcbtheorem[number within=chapter]{lemma}{Lemma}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnOrange},
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=tnOrange, fonttitle=\bfseries\sffamily,
+    description font=\mdseries, separator sign none,
+    segmentation style={solid, tnOrange},
+}{th}
+
+%================================
+% PROPOSITION
+%================================
+\newtcbtheorem[number within=section]{Prop}{Proposition}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnCyan},
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=tnCyan, fonttitle=\bfseries\sffamily,
+    description font=\mdseries, separator sign none,
+    segmentation style={solid, tnCyan},
+}{th}
+
+\newtcbtheorem[number within=chapter]{prop}{Proposition}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnCyan},
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=tnCyan, fonttitle=\bfseries\sffamily,
+    description font=\mdseries, separator sign none,
+    segmentation style={solid, tnCyan},
+}{th}
+
+%================================
+% CLAIM
+%================================
+\newtcbtheorem[number within=section]{claim}{Claim}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnGreen},
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=tnGreen, fonttitle=\bfseries\sffamily,
+    description font=\mdseries, separator sign none,
+    segmentation style={solid, tnGreen},
+}{th}
+
+%================================
+% EXAMPLE
+%================================
+\newtcbtheorem[number within=section]{Example}{Example}{%
+    colback=tnBgHL, coltext=tnFg,
+    breakable, colframe=tnTeal,
+    coltitle=tnCyan, boxrule=1pt,
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    fonttitle=\bfseries, description font=\mdseries,
+    separator sign none, description delimiters parenthesis,
+}{ex}
+
+\newtcbtheorem[number within=chapter]{example}{Example}{%
+    colback=tnBgHL, coltext=tnFg,
+    breakable, colframe=tnTeal,
+    coltitle=tnCyan, boxrule=1pt,
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    fonttitle=\bfseries, description font=\mdseries,
+    separator sign none, description delimiters parenthesis,
+}{ex}
+
+%================================
+% EXERCISE
+%================================
+\newtcbtheorem[number within=section]{Exercise}{Exercise}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnTeal},
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=tnTeal, fonttitle=\bfseries\sffamily,
+    description font=\mdseries, separator sign none,
+    segmentation style={solid, tnTeal},
+}{th}
+
+\newtcbtheorem[number within=chapter]{exercise}{Exercise}{%
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    frame hidden, boxrule=0sp,
+    borderline west={2pt}{0pt}{tnTeal},
+    sharp corners, detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=tnTeal, fonttitle=\bfseries\sffamily,
+    description font=\mdseries, separator sign none,
+    segmentation style={solid, tnTeal},
+}{th}
+
+%================================
+% DEFINITION  (title-tab style)
+%================================
+\newtcbtheorem[number within=section]{Definition}{Definition}{
+    enhanced,
+    before skip=2mm, after skip=2mm,
+    colback=tnBgHL, coltext=tnFg,
+    colframe=tnRed,
+    boxrule=0.5mm,
+    attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+    varwidth boxed title*=-3cm,
+    boxed title style={frame code={
+        \path[fill=tcbcolback]
+            ([yshift=-1mm,xshift=-1mm]frame.north west)
+            arc[start angle=0,end angle=180,radius=1mm]
+            ([yshift=-1mm,xshift=1mm]frame.north east)
+            arc[start angle=180,end angle=0,radius=1mm];
+        \path[left color=tcbcolback!60!tnBgDark,right color=tcbcolback!60!tnBgDark,
+              middle color=tcbcolback!80!tnBgDark]
+            ([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+            [rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+            -- (frame.south east) -- (frame.south west)
+            -- ([xshift=-1mm,yshift=-1mm]frame.north west)
+            [sharp corners]-- cycle;
+        }, interior engine=empty,
+    },
+    fonttitle=\bfseries\color{tnFg},
+    title={#2},#1
+}{def}
+
+\newtcbtheorem[number within=chapter]{definition}{Definition}{
+    enhanced,
+    before skip=2mm, after skip=2mm,
+    colback=tnBgHL, coltext=tnFg,
+    colframe=tnRed,
+    boxrule=0.5mm,
+    attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+    varwidth boxed title*=-3cm,
+    boxed title style={frame code={
+        \path[fill=tcbcolback]
+            ([yshift=-1mm,xshift=-1mm]frame.north west)
+            arc[start angle=0,end angle=180,radius=1mm]
+            ([yshift=-1mm,xshift=1mm]frame.north east)
+            arc[start angle=180,end angle=0,radius=1mm];
+        \path[left color=tcbcolback!60!tnBgDark,right color=tcbcolback!60!tnBgDark,
+              middle color=tcbcolback!80!tnBgDark]
+            ([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+            [rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+            -- (frame.south east) -- (frame.south west)
+            -- ([xshift=-1mm,yshift=-1mm]frame.north west)
+            [sharp corners]-- cycle;
+        }, interior engine=empty,
+    },
+    fonttitle=\bfseries\color{tnFg},
+    title={#2},#1
+}{def}
+
+%================================
+% QUESTION BOX (numbered)
+%================================
+\newcounter{questioncounter}
+\counterwithin{questioncounter}{chapter}
+
+\makeatletter
+\newtcbtheorem[use counter=questioncounter]{question}{Question}{
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    colframe=tnBlue,
+    attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+    fonttitle=\bfseries, title={#2},
+    boxed title size=title,
+    boxed title style={sharp corners, rounded corners=northwest,
+        colback=tcbcolframe, boxrule=0pt},
+    underlay boxed title={%
+        \path[fill=tcbcolframe] (title.south west)--(title.south east)
+        to[out=0, in=180] ([xshift=5mm]title.east)--
+        (title.center-|frame.east)
+        [rounded corners=\kvtcb@arc] |- (frame.north) -| cycle;},
+    #1
+}{def}
+\makeatother
+
+%================================
+% QUESTION (qstion style)
+%================================
+\makeatletter
+\newtcbtheorem{qstion}{Question}{
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    colframe=tnComment,
+    attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+    fonttitle=\bfseries, title={#2},
+    boxed title size=title,
+    boxed title style={sharp corners, rounded corners=northwest,
+        colback=tcbcolframe, boxrule=0pt},
+    underlay boxed title={%
+        \path[fill=tcbcolframe] (title.south west)--(title.south east)
+        to[out=0, in=180] ([xshift=5mm]title.east)--
+        (title.center-|frame.east)
+        [rounded corners=\kvtcb@arc] |- (frame.north) -| cycle;},
+    #1
+}{def}
+\makeatother
+
+%================================
+% SOLUTION BOX
+%================================
+\makeatletter
+\newtcolorbox{solution}{
+    enhanced, breakable,
+    colback=tnBgHL, coltext=tnFg,
+    colframe=tnGreen,
+    attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+    title=Solution,
+    boxed title size=title,
+    boxed title style={sharp corners, rounded corners=northwest,
+        colback=tcbcolframe, boxrule=0pt},
+    underlay boxed title={%
+        \path[fill=tcbcolframe] (title.south west)--(title.south east)
+        to[out=0, in=180] ([xshift=5mm]title.east)--
+        (title.center-|frame.east)
+        [rounded corners=\kvtcb@arc] |- (frame.north) -| cycle;},
+}
+\makeatother
+
+%================================
+% WRONG CONCEPT BOX
+%================================
+\newtcbtheorem[number within=chapter]{wconc}{Wrong Concept}{
+    breakable, enhanced,
+    colback=tnBgHL, coltext=tnFg,
+    colframe=tnRed,
+    arc=0pt, outer arc=0pt,
+    fonttitle=\bfseries\sffamily\large,
+    colbacktitle=tnRed,
+    attach boxed title to top left={},
+    boxed title style={enhanced, skin=enhancedfirst jigsaw,
+        arc=3pt, bottom=0pt, interior style={fill=tnRed}},
+    #1
+}{def}
+
+%================================
+% NOTE BOX
+%================================
+\newtcolorbox{note}[1][]{%
+    enhanced jigsaw,
+    colback=tnBgHL, coltext=tnFg,
+    colframe=tnComment,
+    size=small, boxrule=1pt,
+    title=\textbf{Note:-},
+    halign title=flush center,
+    coltitle=tnYellow,
+    breakable,
+    drop shadow=tnBgDark!80!tnComment,
+    attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+        yshifttext=-\tcboxedtitleheight/2},
+    minipage boxed title=1.5cm,
+    boxed title style={%
+        colback=tnBgDark, coltext=tnYellow,
+        size=fbox, boxrule=1pt, boxsep=2pt,
+        underlay={%
+            \coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+            \coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+            \begin{scope}
+                \clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+                \filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+                    rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+            \end{scope}
+            \begin{scope}[tnComment]
+                \fill (dotA) circle (2pt);
+                \fill (dotB) circle (2pt);
+            \end{scope}
+        },
+    },
+    #1,
+}
+
+% ----------------------------------------------------------------
+%  SHORTHAND COMMANDS  (from preamble + macros)
+% ----------------------------------------------------------------
+\newcommand{\thm}[2]{\begin{Theorem}{#1}{}#2\end{Theorem}}
+\newcommand{\cor}[2]{\begin{Corollary}{#1}{}#2\end{Corollary}}
+\newcommand{\mlemma}[2]{\begin{Lemma}{#1}{}#2\end{Lemma}}
+\newcommand{\mlenma}[2]{\begin{Lemma}{#1}{}#2\end{Lemma}}   % alias for typo in original
+\newcommand{\mer}[2]{\begin{Exercise}{#1}{}#2\end{Exercise}}
+\newcommand{\mprop}[2]{\begin{Prop}{#1}{}#2\end{Prop}}
+\newcommand{\clm}[3]{\begin{claim}{#1}{#2}#3\end{claim}}
+\newcommand{\wc}[2]{\begin{wconc}{#1}{}\setlength{\parindent}{1cm}#2\end{wconc}}
+\newcommand{\thmcon}[1]{\begin{Theoremcon}{#1}\end{Theoremcon}}
+\newcommand{\ex}[2]{\begin{Example}{#1}{}#2\end{Example}}
+\newcommand{\dfn}[2]{\begin{Definition}[colbacktitle=tnRed]{#1}{}#2\end{Definition}}
+\newcommand{\dfnc}[2]{\begin{definition}[colbacktitle=tnRed]{#1}{}#2\end{definition}}
+\newcommand{\qs}[2]{\begin{question}{#1}{}#2\end{question}}
+\newcommand{\pf}[2]{\begin{myproof}[#1]#2\end{myproof}}
+\newcommand{\nt}[1]{\begin{note}#1\end{note}}
+
+% misc math helpers
+\newcommand{\eps}{\epsilon}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\Qed}{\begin{flushright}\qed\end{flushright}}
+\newcommand{\parinn}{\setlength{\parindent}{1cm}}
+\newcommand{\parinf}{\setlength{\parindent}{0cm}}
+\newcommand{\inorm}{\norm_{\infty}}
+\newcommand{\opensets}{\{V_{\alpha}\}_{\alpha\in I}}
+\newcommand{\oset}{V_{\alpha}}
+\newcommand{\opset}[1]{V_{\alpha_{#1}}}
+\newcommand{\lub}{\text{lub}}
+\newcommand{\del}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\Del}[3]{\frac{\partial^{#1} #2}{\partial^{#1} #3}}
+\newcommand{\deld}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\Deld}[3]{\dfrac{\partial^{#1} #2}{\partial^{#1} #3}}
+\newcommand{\der}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\lm}{\lambda}
+\newcommand{\uin}{\mathbin{\rotatebox[origin=c]{90}{$\in$}}}
+\newcommand{\usubset}{\mathbin{\rotatebox[origin=c]{90}{$\subset$}}}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\exs}{\exists}
+\newcommand{\st}{\strut}
+\newcommand{\dps}[1]{\displaystyle{#1}}
+\newcommand{\id}{\text{id}}
+\newcommand{\sol}{\setlength{\parindent}{0cm}\textbf{\textit{Solution:}}\setlength{\parindent}{1cm} }
+\newcommand{\solve}[1]{\setlength{\parindent}{0cm}\textbf{\textit{Solution: }}\setlength{\parindent}{1cm}#1 \Qed}
+
+% paired delimiters
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\round}{\lfloor}{\rceil}
+
+% slanted d for differentials
+\newsavebox\diffdbox
+\newcommand{\slantedromand}{{\mathpalette\makesl{d}}}
+\newcommand{\makesl}[2]{%
+  \begingroup
+  \sbox{\diffdbox}{$\mathsurround=0pt#1\mathrm{#2}$}%
+  \pdfsave\pdfsetmatrix{1 0 0.2 1}%
+  \rlap{\usebox{\diffdbox}}\pdfrestore
+  \hskip\wd\diffdbox\endgroup}
+\newcommand{\dd}[1][]{\ensuremath{\mathop{}\!\ifstrempty{#1}{%
+  \slantedromand\@ifnextchar^{\hspace{0.2ex}}{\hspace{0.1ex}}}%
+  {\slantedromand\hspace{0.2ex}^{#1}}}}
+\ProvideDocumentCommand\dv{o m g}{%
+  \ensuremath{%
+    \IfValueTF{#3}{\IfNoValueTF{#1}{\frac{\dd #2}{\dd #3}}{\frac{\dd^{#1} #2}{\dd #3^{#1}}}}%
+                  {\IfNoValueTF{#1}{\frac{\dd}{\dd #2}}{\frac{\dd^{#1}}{\dd #2^{#1}}}}}}
+\providecommand*{\pdv}[3][]{\frac{\partial^{#1}#2}{\partial#3^{#1}}}
+
+\DeclareMathOperator{\Lap}{\mathcal{L}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\E}{E}
+
+\let\oldleq\leq \let\oldgeq\geq
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+% circled numbers
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw=tnBlue,inner sep=1pt,text=tnFg] (char) {#1};}}
+\newcommand\getcurrentref[1]{%
+  \ifnumequal{\value{#1}}{0}{??}{\the\value{#1}}%
+}
+\newcommand{\getCurrentSectionNumber}{\getcurrentref{section}}
+
+% proof / claim environments
+\newenvironment{myproof}[1][\proofname]{%
+  \proof[\bfseries #1: ]}{\endproof}
+\newcommand{\mclm}[2]{\begin{myclaim}[#1]#2\end{myclaim}}
+\newenvironment{myclaim}[1][\claimname]{\proof[\bfseries #1: ]}{}
+\newenvironment{iclaim}[1][\claimname]{\bfseries #1\mdseries:}{}
+\newcommand{\iclm}[2]{\begin{iclaim}[#1]#2\end{iclaim}}
+
+\newcounter{mylabelcounter}
+\makeatletter
+\newcommand{\setword}[2]{%
+  \phantomsection #1\def\@currentlabel{\unexpanded{#1}}\label{#2}%
+}
+\makeatother
+
+% ----------------------------------------------------------------
+%  LETTERFONTS  (blackboard, mathcal, bold, script, fraktur)
+% ----------------------------------------------------------------
+
+% number sets (shorthand with optional superscript)
+\newcommand{\RR}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{R}}{\mathbb{R}^{#1}}}}
+\newcommand{\NN}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{N}}{\mathbb{N}^{#1}}}}
+\newcommand{\ZZ}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{Z}}{\mathbb{Z}^{#1}}}}
+\newcommand{\QQ}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{Q}}{\mathbb{Q}^{#1}}}}
+\newcommand{\CC}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{C}}{\mathbb{C}^{#1}}}}
+\newcommand{\PP}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{P}}{\mathbb{P}^{#1}}}}
+\newcommand{\HH}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{H}}{\mathbb{H}^{#1}}}}
+\newcommand{\FF}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{F}}{\mathbb{F}^{#1}}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+
+% blackboard bold A–Z
+\newcommand{\bbA}{\mathbb{A}} \newcommand{\bbB}{\mathbb{B}}
+\newcommand{\bbC}{\mathbb{C}} \newcommand{\bbD}{\mathbb{D}}
+\newcommand{\bbE}{\mathbb{E}} \newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbG}{\mathbb{G}} \newcommand{\bbH}{\mathbb{H}}
+\newcommand{\bbI}{\mathbb{I}} \newcommand{\bbJ}{\mathbb{J}}
+\newcommand{\bbK}{\mathbb{K}} \newcommand{\bbL}{\mathbb{L}}
+\newcommand{\bbM}{\mathbb{M}} \newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbO}{\mathbb{O}} \newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbQ}{\mathbb{Q}} \newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbS}{\mathbb{S}} \newcommand{\bbT}{\mathbb{T}}
+\newcommand{\bbU}{\mathbb{U}} \newcommand{\bbV}{\mathbb{V}}
+\newcommand{\bbW}{\mathbb{W}} \newcommand{\bbX}{\mathbb{X}}
+\newcommand{\bbY}{\mathbb{Y}} \newcommand{\bbZ}{\mathbb{Z}}
+
+% mathcal A–Z
+\newcommand{\mcA}{\mathcal{A}} \newcommand{\mcB}{\mathcal{B}}
+\newcommand{\mcC}{\mathcal{C}} \newcommand{\mcD}{\mathcal{D}}
+\newcommand{\mcE}{\mathcal{E}} \newcommand{\mcF}{\mathcal{F}}
+\newcommand{\mcG}{\mathcal{G}} \newcommand{\mcH}{\mathcal{H}}
+\newcommand{\mcI}{\mathcal{I}} \newcommand{\mcJ}{\mathcal{J}}
+\newcommand{\mcK}{\mathcal{K}} \newcommand{\mcL}{\mathcal{L}}
+\newcommand{\mcM}{\mathcal{M}} \newcommand{\mcN}{\mathcal{N}}
+\newcommand{\mcO}{\mathcal{O}} \newcommand{\mcP}{\mathcal{P}}
+\newcommand{\mcQ}{\mathcal{Q}} \newcommand{\mcR}{\mathcal{R}}
+\newcommand{\mcS}{\mathcal{S}} \newcommand{\mcT}{\mathcal{T}}
+\newcommand{\mcU}{\mathcal{U}} \newcommand{\mcV}{\mathcal{V}}
+\newcommand{\mcW}{\mathcal{W}} \newcommand{\mcX}{\mathcal{X}}
+\newcommand{\mcY}{\mathcal{Y}} \newcommand{\mcZ}{\mathcal{Z}}
+
+% bold math A–Z
+\newcommand{\bmA}{\boldsymbol{A}} \newcommand{\bmB}{\boldsymbol{B}}
+\newcommand{\bmC}{\boldsymbol{C}} \newcommand{\bmD}{\boldsymbol{D}}
+\newcommand{\bmE}{\boldsymbol{E}} \newcommand{\bmF}{\boldsymbol{F}}
+\newcommand{\bmG}{\boldsymbol{G}} \newcommand{\bmH}{\boldsymbol{H}}
+\newcommand{\bmI}{\boldsymbol{I}} \newcommand{\bmJ}{\boldsymbol{J}}
+\newcommand{\bmK}{\boldsymbol{K}} \newcommand{\bmL}{\boldsymbol{L}}
+\newcommand{\bmM}{\boldsymbol{M}} \newcommand{\bmN}{\boldsymbol{N}}
+\newcommand{\bmO}{\boldsymbol{O}} \newcommand{\bmP}{\boldsymbol{P}}
+\newcommand{\bmQ}{\boldsymbol{Q}} \newcommand{\bmR}{\boldsymbol{R}}
+\newcommand{\bmS}{\boldsymbol{S}} \newcommand{\bmT}{\boldsymbol{T}}
+\newcommand{\bmU}{\boldsymbol{U}} \newcommand{\bmV}{\boldsymbol{V}}
+\newcommand{\bmW}{\boldsymbol{W}} \newcommand{\bmX}{\boldsymbol{X}}
+\newcommand{\bmY}{\boldsymbol{Y}} \newcommand{\bmZ}{\boldsymbol{Z}}
+\newcommand{\bma}{\boldsymbol{a}} \newcommand{\bmb}{\boldsymbol{b}}
+\newcommand{\bmc}{\boldsymbol{c}} \newcommand{\bmd}{\boldsymbol{d}}
+\newcommand{\bme}{\boldsymbol{e}} \newcommand{\bmf}{\boldsymbol{f}}
+\newcommand{\bmg}{\boldsymbol{g}} \newcommand{\bmh}{\boldsymbol{h}}
+\newcommand{\bmi}{\boldsymbol{i}} \newcommand{\bmj}{\boldsymbol{j}}
+\newcommand{\bmk}{\boldsymbol{k}} \newcommand{\bml}{\boldsymbol{l}}
+\newcommand{\bmm}{\boldsymbol{m}} \newcommand{\bmn}{\boldsymbol{n}}
+\newcommand{\bmo}{\boldsymbol{o}} \newcommand{\bmp}{\boldsymbol{p}}
+\newcommand{\bmq}{\boldsymbol{q}} \newcommand{\bmr}{\boldsymbol{r}}
+\newcommand{\bms}{\boldsymbol{s}} \newcommand{\bmt}{\boldsymbol{t}}
+\newcommand{\bmu}{\boldsymbol{u}} \newcommand{\bmv}{\boldsymbol{v}}
+\newcommand{\bmw}{\boldsymbol{w}} \newcommand{\bmx}{\boldsymbol{x}}
+\newcommand{\bmy}{\boldsymbol{y}} \newcommand{\bmz}{\boldsymbol{z}}
+
+% mathscr A–Z
+\newcommand{\sA}{{\mathscr{A}}} \newcommand{\sB}{{\mathscr{B}}}
+\newcommand{\sC}{{\mathscr{C}}} \newcommand{\sD}{{\mathscr{D}}}
+\newcommand{\sE}{{\mathscr{E}}} \newcommand{\sF}{{\mathscr{F}}}
+\newcommand{\sG}{{\mathscr{G}}} \newcommand{\sH}{{\mathscr{H}}}
+\newcommand{\sI}{{\mathscr{I}}} \newcommand{\sJ}{{\mathscr{J}}}
+\newcommand{\sK}{{\mathscr{K}}} \newcommand{\sL}{{\mathscr{L}}}
+\newcommand{\sM}{{\mathscr{M}}} \newcommand{\sN}{{\mathscr{N}}}
+\newcommand{\sO}{{\mathscr{O}}} \newcommand{\sP}{{\mathscr{P}}}
+\newcommand{\sQ}{{\mathscr{Q}}} \newcommand{\sR}{{\mathscr{R}}}
+\newcommand{\sS}{{\mathscr{S}}} \newcommand{\sT}{{\mathscr{T}}}
+\newcommand{\sU}{{\mathscr{U}}} \newcommand{\sV}{{\mathscr{V}}}
+\newcommand{\sW}{{\mathscr{W}}} \newcommand{\sX}{{\mathscr{X}}}
+\newcommand{\sY}{{\mathscr{Y}}} \newcommand{\sZ}{{\mathscr{Z}}}
+
+% mathfrak A–Z and a–z
+\newcommand{\mfA}{\mathfrak{A}} \newcommand{\mfB}{\mathfrak{B}}
+\newcommand{\mfC}{\mathfrak{C}} \newcommand{\mfD}{\mathfrak{D}}
+\newcommand{\mfE}{\mathfrak{E}} \newcommand{\mfF}{\mathfrak{F}}
+\newcommand{\mfG}{\mathfrak{G}} \newcommand{\mfH}{\mathfrak{H}}
+\newcommand{\mfI}{\mathfrak{I}} \newcommand{\mfJ}{\mathfrak{J}}
+\newcommand{\mfK}{\mathfrak{K}} \newcommand{\mfL}{\mathfrak{L}}
+\newcommand{\mfM}{\mathfrak{M}} \newcommand{\mfN}{\mathfrak{N}}
+\newcommand{\mfO}{\mathfrak{O}} \newcommand{\mfP}{\mathfrak{P}}
+\newcommand{\mfQ}{\mathfrak{Q}} \newcommand{\mfR}{\mathfrak{R}}
+\newcommand{\mfS}{\mathfrak{S}} \newcommand{\mfT}{\mathfrak{T}}
+\newcommand{\mfU}{\mathfrak{U}} \newcommand{\mfV}{\mathfrak{V}}
+\newcommand{\mfW}{\mathfrak{W}} \newcommand{\mfX}{\mathfrak{X}}
+\newcommand{\mfY}{\mathfrak{Y}} \newcommand{\mfZ}{\mathfrak{Z}}
+\newcommand{\mfa}{\mathfrak{a}} \newcommand{\mfb}{\mathfrak{b}}
+\newcommand{\mfc}{\mathfrak{c}} \newcommand{\mfd}{\mathfrak{d}}
+\newcommand{\mfe}{\mathfrak{e}} \newcommand{\mff}{\mathfrak{f}}
+\newcommand{\mfg}{\mathfrak{g}} \newcommand{\mfh}{\mathfrak{h}}
+\newcommand{\mfi}{\mathfrak{i}} \newcommand{\mfj}{\mathfrak{j}}
+\newcommand{\mfk}{\mathfrak{k}} \newcommand{\mfl}{\mathfrak{l}}
+\newcommand{\mfm}{\mathfrak{m}} \newcommand{\mfn}{\mathfrak{n}}
+\newcommand{\mfo}{\mathfrak{o}} \newcommand{\mfp}{\mathfrak{p}}
+\newcommand{\mfq}{\mathfrak{q}} \newcommand{\mfr}{\mathfrak{r}}
+\newcommand{\mfs}{\mathfrak{s}} \newcommand{\mft}{\mathfrak{t}}
+\newcommand{\mfu}{\mathfrak{u}} \newcommand{\mfv}{\mathfrak{v}}
+\newcommand{\mfw}{\mathfrak{w}} \newcommand{\mfx}{\mathfrak{x}}
+\newcommand{\mfy}{\mathfrak{y}} \newcommand{\mfz}{\mathfrak{z}}
+
+% ----------------------------------------------------------------
+%  TABLE OF CONTENTS  (Tokyo Night Dark)
+% ----------------------------------------------------------------
+\contentsmargin{0cm}
+\titlecontents{chapter}[3.7pc]
+{\addvspace{30pt}%
+  \begin{tikzpicture}[remember picture, overlay]%
+    \draw[fill=tnBlue,draw=tnBlue] (-7,-.1) rectangle (-0.9,.5);%
+    \pgftext[left,x=-3.7cm,y=0.2cm]{\color{tnBgDark}\Large\bfseries Chapter\ \thecontentslabel};%
+  \end{tikzpicture}\color{tnBlue}\large\bfseries}%
+{}{}
+{\;\titlerule\;\large\bfseries Page \thecontentspage
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[fill=tnBlue,draw=tnBlue] (2pt,0) rectangle (4,0.1pt);
+  \end{tikzpicture}}%
+
+\titlecontents{section}[3.7pc]
+{\addvspace{2pt}}
+{\contentslabel[\thecontentslabel]{2pc}}
+{}
+{\hfill\small \thecontentspage}
+[]
+\titlecontents*{subsection}[3.7pc]
+{\addvspace{-1pt}\small}{}{}
+{\ --- \small\thecontentspage}
+[ \textbullet\ ][]
+
+\makeatletter
+\renewcommand{\tableofcontents}{%
+  \chapter*{%
+    \vspace*{-20\p@}%
+    \begin{tikzpicture}[remember picture, overlay]%
+      \pgftext[right,x=15cm,y=0.2cm]{\color{tnBlue}\Huge\bfseries \contentsname};%
+      \draw[fill=tnBlue,draw=tnBlue] (13,-.75) rectangle (20,1);%
+      \clip (13,-.75) rectangle (20,1);
+      \pgftext[right,x=15cm,y=0.2cm]{\color{tnBgDark}\Huge\bfseries \contentsname};%
+    \end{tikzpicture}}%
+  \@starttoc{toc}}
+\makeatother
+
+% ----------------------------------------------------------------
+%  LISTINGS — Tokyo Night Dark
+% ----------------------------------------------------------------
+
+\lstdefinestyle{tokyonight}{
+    % colours
+    backgroundcolor  = \color{tnBgDark},
+    basicstyle       = \ttfamily\small\color{tnFg},  % \ttfamily now maps to JetBrains Mono
+    commentstyle     = \itshape\color{tnComment},
+    keywordstyle     = \bfseries\color{tnPurple},
+    keywordstyle     = [2]\color{tnBlue},
+    keywordstyle     = [3]\color{tnCyan},
+    stringstyle      = \color{tnGreen},
+    numberstyle      = \tiny\color{tnComment},
+    identifierstyle  = \color{tnFg},
+    % line numbers
+    numbers          = left,
+    numbersep        = 10pt,
+    stepnumber       = 1,
+    % frame
+    frame            = single,
+    framerule        = 0.6pt,
+    rulecolor        = \color{tnComment},
+    framesep         = 4pt,
+    % spacing & misc
+    tabsize          = 4,
+    showspaces       = false,
+    showstringspaces = false,
+    showtabs         = false,
+    breaklines       = true,
+    breakatwhitespace= true,
+    keepspaces       = true,
+    captionpos       = b,
+    aboveskip        = 1em,
+    belowskip        = 1em,
+    xleftmargin      = 1.5em,
+    xrightmargin     = 0.5em,
+}
+
+% ---- language-specific keyword layers ----
+
+% Python
+\lstdefinelanguage{Python3}{
+    language     = Python,
+    morekeywords = {True,False,None,as,assert,async,await,
+                    class,def,del,elif,else,except,finally,
+                    for,from,global,if,import,in,is,lambda,
+                    nonlocal,not,or,pass,raise,return,try,
+                    while,with,yield,and,break,continue},
+    morekeywords = [2]{int,float,str,bool,list,dict,tuple,set,
+                    type,len,range,print,input,open,super,
+                    self,cls,property,staticmethod,classmethod},
+    sensitive    = true,
+    morestring   = [b]{"},
+    morestring   = [b]{'},
+    morecomment  = [l]{\#},
+}
+
+% C / C++  (extra keywords layer)
+\lstdefinelanguage{CPP}{
+    language     = C++,
+    morekeywords = {nullptr,override,final,constexpr,noexcept,
+                    decltype,auto,static_assert,thread_local},
+    morekeywords = [2]{std,cout,cin,endl,string,vector,map,
+                    set,pair,make_pair,push_back,size,begin,end},
+    morekeywords = [3]{\#include,\#define,\#pragma,\#ifndef,
+                    \#ifdef,\#endif},
+}
+
+% Java  (extra keywords layer)
+\lstdefinelanguage{Java8}{
+    language     = Java,
+    morekeywords = {var,record,sealed,permits,yield},
+    morekeywords = [2]{String,Integer,Double,Boolean,List,
+                    ArrayList,Map,HashMap,Set,HashSet,
+                    Optional,Stream,System,Math,Object},
+    morekeywords = [3]{@Override,@Deprecated,@FunctionalInterface,
+                    @SuppressWarnings},
+}
+
+% set the global default style
+\lstset{style=tokyonight}
+
+%================================
+% CODE TCOLORBOX WRAPPERS
+%================================
+
+% \codebox[language]{caption}{code}
+\newcommand{\codebox}[3][]{%
+    \begin{tcolorbox}[
+        enhanced, breakable,
+        colback   = tnBgDark,
+        colframe  = tnComment,
+        coltext   = tnFg,
+        boxrule   = 0.6pt,
+        arc       = 4pt,
+        left      = 0pt, right = 0pt,
+        top       = 0pt, bottom = 0pt,
+        title     = {\texttt{\textcolor{tnYellow}{#2}}},
+        attach boxed title to top left={yshift=-2mm, xshift=4mm},
+        boxed title style={
+            colback  = tnBgDark,
+            colframe = tnComment,
+            boxrule  = 0.6pt,
+            arc      = 3pt,
+        },
+        fonttitle = \bfseries\small\color{tnYellow},
+    ]
+    \lstinputlisting[style=tokyonight, language=#1]{#3}
+    \end{tcolorbox}%
+}
+
+% \begin{code}[language] ... \end{code}   — inline listing
+\lstnewenvironment{code}[1][]{%
+    \lstset{style=tokyonight, language=#1}%
+    \tcolorbox[
+        enhanced, breakable,
+        colback  = tnBgDark,
+        colframe = tnComment,
+        coltext  = tnFg,
+        boxrule  = 0.6pt,
+        arc      = 4pt,
+        left     = 2pt, right = 2pt,
+        top      = 2pt, bottom = 2pt,
+    ]%
+}{%
+    \endtcolorbox
+}
+
+% shortcuts
+\newcommand{\py}[1]{\lstinline[style=tokyonight,language=Python3]{#1}}
+\newcommand{\cpp}[1]{\lstinline[style=tokyonight,language=CPP]{#1}}
+\newcommand{\java}[1]{\lstinline[style=tokyonight,language=Java8]{#1}}
+\newcommand{\inlinecode}[1]{\lstinline[style=tokyonight]{#1}}  % generic inline
+
+% ================================================================
+%  DOCUMENT BEGINS HERE
+%  — Replace the fields below and start writing!
+% ================================================================
+
+% ---- FILL THESE IN ----
+\newcommand{\COURSE}{Software Enginnering}
+\newcommand{\AUTHOR}{Aditya Kumar}
+\newcommand{\SEMESTER}{2nd Sem}
+% -----------------------
+
+\title{\Huge{\COURSE}\\[4pt]\large\SEMESTER}
+\author{\huge{\AUTHOR}}
+\date{}
+
+\begin{document}
+
+\pagecolor{tnBg}
+\color{tnFg}
+
+\maketitle
+\newpage
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+% ================================================================
+%  START YOUR NOTES BELOW
+%  Available environments:
+%    \dfn{Title}{content}          — Definition
+%    \thm{Title}{content}          — Theorem
+%    \cor{Title}{content}          — Corollary
+%    \mlemma{Title}{content}       — Lemma
+%    \mprop{Title}{content}        — Proposition
+%    \clm{Title}{label}{content}   — Claim
+%    \ex{Title}{content}           — Example
+%    \qs{Title}{content}           — Question (numbered)
+%    \sol / \solve{content}        — Solution
+%    \nt{content}                  — Note box
+%    \wc{Title}{content}           — Wrong Concept
+%    \pf{Title}{content}           — Proof
+% ================================================================
+
+\chapter{Introduction}
+\section{Getting Started}
+Software engineering is built on the premise that as software projects move from small, individual efforts to large-scale team endeavours, intuition must be replaced by a systematic, disciplined, and quantifiable approach. One thing that helped me recently when looking at architectural decisions was Mall’s focus on "Phase Containment"—the idea that catching a bug in the same phase it was born isn't just a good habit; it’s an economic necessity to keep costs from growing exponentially.
+
+Here is how Mall defines the fundamental pillars of the discipline.
+
+LAYER 1 — Explain Like I'm 5
+
+Imagine you want to build a tiny birdhouse. You can probably just grab some wood, a hammer, and wing it. If you mess up, it's easy to fix. But now imagine you are asked to build a 50-storey skyscraper. You can’t just "wing it" anymore. You need exact blueprints, a schedule for when the cranes arrive, and a way to test if the floors are steady before you build the next one.
+
+Software engineering is that "skyscraper plan" for computers. Because we can’t see code like we see a building, we need special rules and documents to make sure the hundreds of people working on it don't get confused and that the "building" doesn't fall down when we’re finished.
+
+***
+
+### LAYER 2 — The Real Explanation
+
+**What it is**
+Software engineering is a systematic collection of program development practices and techniques derived from decades of research and practitioner experience. It is essentially an engineering approach to software development, moving away from the "artistic" or "craft" style used in smaller projects.
+
+**Why it exists / The problem it solves**
+It exists to tackle the "Software Crisis," where projects were consistently delivered late, over budget, and full of defects.
+*   **The Complexity Ceiling:** In an exploratory ("build and fix") style, the effort required to build a project grows **exponentially** with size.
+*   **Cognitive Limitations:** Humans can only track about seven unrelated items at once. Software engineering uses principles like **Abstraction** (modelling) and **Decomposition** (divide and conquer) to keep project effort **linear** and manageable.
+
+**How it works fundamentally**
+Mall structures the discipline around the **Software Life Cycle Model (SDLC)**, which describes the stages from initial request to final retirement.
+*   **Ordered Activities:** Development follows a defined path: Feasibility, Requirements (SRS), Design, Coding, Testing, and Maintenance.
+*   **Visibility:** Because software is "invisible," progress is measured through consistent, peer-reviewed documents at each stage.
+*   **Project Management Precedence:** Effective planning follows a strict logical flow: you estimate **Size** (using LOC or Function Points) first, then derive **Effort**, then **Duration**, and finally **Cost**.
+*   **Maintenance Dominance:** A critical realization in Mall's work is that roughly **60%** of a software product's life cycle effort is spent on maintenance after delivery.
+
+***
+
+### LAYER 3 — Key Takeaways
+*   **Engineering vs. Art:** Professional software development requires a "programming-in-the-large" mindset where team coordination and systematic methodology are more important than individual "heroic" coding.
+*   **Functional Independence:** A good design is characterized by high **cohesion** (how focused a module is) and low **coupling** (how much modules depend on each other).
+*   **Verification vs. Validation:** Verification checks if we are building the product "right" (conforming to the previous phase), while validation checks if we built the "right" product (meeting the customer's actual needs).
+
+***
+
+### MISCONCEPTION ALERT
+
+**Wrong Assumption: "If we're behind schedule, we can just add more people."**
+Mall highlights **Brooks’ Law**: "Adding people to a late software project makes it later". This happens because new team members require training from the existing staff, and the communication overhead for the project increases non-linearly.
+
+**Wrong Assumption: "Once the code is written, the hard part is over."**
+According to the effort distribution data, the coding phase only accounts for a relatively small portion of the total effort. **Testing** and **Maintenance** are the most effort-intensive phases in the software life cycle.
+
+***
+
+### OPTIONAL — Further Exploration
+Want to try something slightly better? To master the practical application of these principles, check out:
+*   **Requirement Traceability:** Learning how to map every requirement bubble in a DFD to a specific module in a structure chart and eventually to a test case.
+*   **COCOMO II:** Studying this heuristic model to see how "Cost Drivers" like analyst capability or required reliability mathematically impact project effort.
+*   **Object-Oriented Analysis and Design (OOAD):** Transitioning from function-oriented design to an entity-centric view using UML.
+\end{document}
