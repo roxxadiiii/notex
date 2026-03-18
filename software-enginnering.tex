@@ -136,6 +136,39 @@
 %  Inspired by the note box style in your template
 % ============================================================
 
+\newtcolorbox{learning}[1][]{%
+	enhanced jigsaw,
+	colback=tnBgHL, coltext=tnFg,
+	colframe=tnYellow,
+	size=small, boxrule=1pt,
+	title=\textbf{\textcolor{tnYellow}{Explain Like I'm 5}},
+	halign title=flush center,
+	coltitle=tnYellow,
+	breakable,
+	drop shadow=tnBgDark!80!tnComment,
+	attach boxed title to top left={xshift=1cm,yshift=-\tcboxedtitleheight/2,
+		yshifttext=-\tcboxedtitleheight/2},
+	minipage boxed title=6cm,
+	boxed title style={%
+		colback=tnBgDark, coltext=tnYellow,
+		size=fbox, boxrule=1pt, boxsep=2pt,
+		underlay={%
+			\coordinate (dotA) at ($(interior.west) + (-0.5pt,0)$);
+			\coordinate (dotB) at ($(interior.east) + (0.5pt,0)$);
+			\begin{scope}
+				\clip (interior.north west) rectangle ([xshift=3ex]interior.east);
+				\filldraw [tnBgDark, blur shadow={shadow opacity=60, shadow yshift=-.75ex},
+				rounded corners=2pt] (interior.north west) rectangle (interior.south east);
+			\end{scope}
+			\begin{scope}[tnYellow]
+				\fill (dotA) circle (2pt);
+				\fill (dotB) circle (2pt);
+			\end{scope}
+		},
+	},
+	#1,
+}
+
 % ----------------------------------------
 % LAYER 1 — Explain Like I'm 5 (Yellow - friendly/approachable)
 % ----------------------------------------
@@ -1291,7 +1324,7 @@
 % ================================================================
 
 % ---- FILL THESE IN ----
-\newcommand{\COURSE}{Software Enginnering}
+\newcommand{\COURSE}{Machine Learning}
 \newcommand{\AUTHOR}{Aditya Kumar}
 \newcommand{\SEMESTER}{2nd Sem}
 % -----------------------
