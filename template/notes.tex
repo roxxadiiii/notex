@@ -1,0 +1,53 @@
+% ============================================================
+%  MAIN DOCUMENT — CLEAN & MINIMAL
+% ============================================================
+\documentclass{report}
+
+% Load all template configuration
+\input{main.tex}
+
+% Document metadata
+\title{\Huge{Machine Learning Notes}\\[4pt]\large{Fall 2025}}
+\author{Your Name}
+\date{}
+
+\begin{document}
+
+\pagecolor{tnBg}
+\color{tnFg}
+
+\maketitle
+\tableofcontents
+\newpage
+
+% ============================================================
+%  CONTENT
+% ============================================================
+\chapter{Introduction}
+
+%\eli5{
+  Machine learning is like teaching a computer to recognize patterns
+  from examples, instead of programming explicit rules.
+}
+
+\real{
+  Formally, let $\mathcal{D} = \{(x_i, y_i)\}_{i=1}^n$ be a dataset.
+  We seek $f: \mathcal{X} \to \mathcal{Y}$ that minimizes
+  $\mathbb{E}_{(x,y) \sim \mathcal{D}}[\ell(f(x), y)]$.
+}
+
+\section{Key Concepts}
+
+\begin{layerTakeaways}
+\begin{itemize}
+  \item Supervised vs. unsupervised learning
+  \item Bias-variance tradeoff
+  \item Overfitting and regularization
+\end{itemize}
+\end{layerTakeaways}
+
+% Include chapter files for even cleaner main.tex
+% \input{chapters/intro.tex}
+% \input{chapters/linear-regression.tex}
+
+\end{document}
