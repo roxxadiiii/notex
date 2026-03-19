@@ -1,0 +1,27 @@
+% ============================================================
+%  MASTER PREAMBLE LOADER
+%  Load all configuration files in order
+% ============================================================
+% 2. Packages
+\input{preamble/packages.tex}
+
+% 1. Colors (must come before tcolorbox)
+\input{preamble/colors.tex}
+
+
+% 3. Fonts
+\input{preamble/fonts.tex}
+
+% 4. tcolorbox definitions (needs colors + packages)
+\input{preamble/tcolorbox.tex}
+
+% 5. Custom commands
+%\input{preamble/commands.tex}
+
+% 6. Hyperref (load last for compatibility)
+\hypersetup{
+    colorlinks=true,
+    linkcolor=tnBlue,
+    urlcolor=tnCyan,
+    citecolor=tnGreen,
+}
