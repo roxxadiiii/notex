@@ -216,8 +216,8 @@ Research isn't just about reading a lot of books. It’s about being a \textit{d
 \end{enumerate}
 \end{paper}
 
-\begin{code}[python3]
-# Code Mode
+\begin{lstlisting}[python3]
+#  Mode
 def conductResearch(problem):
     question = defineQuestion(problem) # Must be 'how' or 'why' [51]
     literature = reviewExistingKnowledge(question) # No reinventing wheels [39]
@@ -231,7 +231,7 @@ def conductResearch(problem):
         return findings
     else:
         return "Refine and Repeat"
-\end{code}
+\end{lstlisting}
 
 \section{Objective of Research}
 
@@ -379,8 +379,8 @@ In the introduction phase, defining your \textbf{research objectives} is the pro
     \end{enumerate}
 \end{activeRecall}
 
-\begin{code}[python3]
-    # Code Mode: Validate Objective Logic
+\begin{}[python3]
+    #  Mode: Validate Objective Logic
     def validate_objective(intent, phenomenon, participants, site):
         action_verbs = ["identify", "determine", "describe", "develop", "explore"]
         if intent.lower() not in action_verbs:
@@ -388,7 +388,7 @@ In the introduction phase, defining your \textbf{research objectives} is the pro
         if not (phenomenon and participants and site):
             return "Error: Objectives must specify what, for whom, and where."
         return "Objective is valid and researchable."
-\end{code}
+\end{}
 
 \begin{paper}
     \begin{enumerate}
@@ -556,8 +556,8 @@ Let's architect our understanding of research motivation so you can build a syst
     \end{enumerate}
 \end{activeRecall}
 
-\begin{code}[python3]
-    # Code Mode: Check Motivation Viability
+\begin{}[python3]
+    #  Mode: Check Motivation Viability
     def check_motivation_viability(interest_score, feasibility_score):
         # Scale of 1-10
         if interest_score < 5:
@@ -567,7 +567,7 @@ Let's architect our understanding of research motivation so you can build a syst
     if interest_score > 8 and feasibility_score > 8:
         return "Ideal: Intellectual Metabolism Active."
     return "Viable: Proceed with Gusto."
-\end{code}
+\end{}
 
 \begin{paper}
     \begin{enumerate}
@@ -748,8 +748,8 @@ Let's break down these classifications so you can build a research design that a
     \end{enumerate}
 \end{activeRecall}
 
-\begin{code}[python3]
-    # Code Mode: Select Research Type
+\begin{}[python3]
+    #  Mode: Select Research Type
     def select_research_type(has_immediate_problem, needs_numeric_proof, variables_known):
     if has_immediate_problem:
     category = "Applied" # Focus on solution
@@ -764,7 +764,7 @@ Let's break down these classifications so you can build a research design that a
     approach = "Quantitative" if needs_numeric_proof else "Qualitative"
     
     return f"{category} {approach} {purpose} Research"
-\end{code}
+\end{}
 
 \begin{paper}
     \begin{enumerate}
@@ -946,8 +946,8 @@ Think of this as the "master strategy" that bridges your philosophical worldview
     \end{enumerate}
 \end{activeRecall}
 
-\begin{code}[python3]
-    # Code Mode: Approach Selection Algorithm
+\begin{}[python3]
+    #  Mode: Approach Selection Algorithm
     def select_approach(problem_type, knowledge_base, audience_preference):
     if problem_type == "Testing Variables" and knowledge_base == "Extensive":
     return "Quantitative - Deductive Approach"
@@ -957,7 +957,7 @@ Think of this as the "master strategy" that bridges your philosophical worldview
     return "Mixed Methods - Pragmatic Approach"
     else:
     return "Evaluate based on Personal Experience and Context"
-\end{code}
+\end{}
 
 \begin{paper}
     \begin{enumerate}
