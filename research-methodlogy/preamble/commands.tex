@@ -632,30 +632,3 @@
 % ----------------------------------------------------------------
 %  LISTINGS — Tokyo Night Dark
 % ----------------------------------------------------------------
-\newtcblisting{code}[1][]{
-	listing engine=minted,
-    breakable,
-
-	colback=tnFg,
-	colframe=tnOverlay0,
-	coltext=tnBg,
-
-	boxrule=0.6pt,
-	arc=4pt,
-	left=6pt, right=6pt,
-	top=6pt, bottom=6pt,
-
-	listing only,
-	minted language=#1,
-	minted options={
-		fontsize=\small,
-		breaklines,
-		tabsize=4,
-
-		linenos,
-		numbersep=10pt,
-
-		bgcolor=tnBg,
-		style=friendly
-	}
-}

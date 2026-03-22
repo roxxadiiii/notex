@@ -1,0 +1,16 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYGZsh{} Code Mode
+def conductResearch(problem):
+question = defineQuestion(problem) \PYGZsh{} Must be \PYGZsq{}how\PYGZsq{} or \PYGZsq{}why\PYGZsq{} [51]
+literature = reviewExistingKnowledge(question) \PYGZsh{} No reinventing wheels [39]
+if literature.fullyAnswers(question):
+return \PYGZdq{}Intelligence Gathering \PYGZhy{} Not Research\PYGZdq{} [19]
+
+data = collectSystematically(question) \PYGZsh{} Methodology choice [52]
+findings = interpret(data) \PYGZsh{} Logic + Reasoning [7]
+
+if findings.isNewContribution(): \PYGZsh{} Originality check [4]
+return findings
+else:
+return \PYGZdq{}Refine and Repeat\PYGZdq{}
+\end{MintedVerbatim}

@@ -1,0 +1,14 @@
+# Code Mode
+def conductResearch(problem):
+question = defineQuestion(problem) # Must be 'how' or 'why' [51]
+literature = reviewExistingKnowledge(question) # No reinventing wheels [39]
+if literature.fullyAnswers(question):
+return "Intelligence Gathering - Not Research" [19]
+
+data = collectSystematically(question) # Methodology choice [52]
+findings = interpret(data) # Logic + Reasoning [7]
+
+if findings.isNewContribution(): # Originality check [4]
+return findings
+else:
+return "Refine and Repeat"
