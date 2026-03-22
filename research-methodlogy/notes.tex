@@ -563,13 +563,13 @@ Let's architect our understanding of research motivation so you can build a syst
 \begin{code}[python3]
     # Code Mode: Check Motivation Viability
     def check_motivation_viability(interest_score, feasibility_score):
-    # Scale of 1-10
-    if interest_score < 5:
-    return "Warning: Boredom Alert. Research quality will suffer."
+        # Scale of 1-10
+        if interest_score < 5:
+            return "Warning: Boredom Alert. Research quality will suffer."
     if feasibility_score < 5:
-    return "Error: Passion without access. You'll hit a dead end."
+        return "Error: Passion without access. You'll hit a dead end."
     if interest_score > 8 and feasibility_score > 8:
-    return "Ideal: Intellectual Metabolism Active."
+        return "Ideal: Intellectual Metabolism Active."
     return "Viable: Proceed with Gusto."
 \end{code}
 
