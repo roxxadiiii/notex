@@ -632,117 +632,30 @@
 % ----------------------------------------------------------------
 %  LISTINGS — Tokyo Night Dark
 % ----------------------------------------------------------------
+\newtcblisting{code}[1][]{
+	listing engine=minted,
+    breakable,
 
-\lstdefinestyle{tokyonight}{
-    % colours
-    backgroundcolor  = \color{tnBgDark},
-    basicstyle       = \ttfamily\small\color{tnFg},  % \ttfamily now maps to JetBrains Mono
-    commentstyle     = \itshape\color{tnComment},
-    keywordstyle     = \bfseries\color{tnPurple},
-    keywordstyle     = [2]\color{tnBlue},
-    keywordstyle     = [3]\color{tnCyan},
-    stringstyle      = \color{tnGreen},
-    numberstyle      = \tiny\color{tnComment},
-    identifierstyle  = \color{tnFg},
-    % line numbers
-    numbers          = left,
-    numbersep        = 10pt,
-    stepnumber       = 1,
-    % frame
-    frame            = single,
-    framerule        = 0.6pt,
-    rulecolor        = \color{tnComment},
-    framesep         = 4pt,
-    % spacing & misc
-    tabsize          = 4,
-    showspaces       = false,
-    showstringspaces = false,
-    showtabs         = false,
-    breaklines       = true,
-    breakatwhitespace= true,
-    keepspaces       = true,
-    captionpos       = b,
-    aboveskip        = 1em,
-    belowskip        = 1em,
-    xleftmargin      = 1.5em,
-    xrightmargin     = 0.5em,
+	colback=tnFg,
+	colframe=tnOverlay0,
+	coltext=tnBg,
+
+	boxrule=0.6pt,
+	arc=4pt,
+	left=6pt, right=6pt,
+	top=6pt, bottom=6pt,
+
+	listing only,
+	minted language=#1,
+	minted options={
+		fontsize=\small,
+		breaklines,
+		tabsize=4,
+
+		linenos,
+		numbersep=10pt,
+
+		bgcolor=tnBg,
+		style=friendly
+	}
 }
-
-% ---- language-specific keyword layers ----
-
-% Python
-\lstdefinelanguage{Python3}{
-    language     = Python,
-    morekeywords = {True,False,None,as,assert,async,await,
-                    class,def,del,elif,else,except,finally,
-                    for,from,global,if,import,in,is,lambda,
-                    nonlocal,not,or,pass,raise,return,try,
-                    while,with,yield,and,break,continue},
-    morekeywords = [2]{int,float,str,bool,list,dict,tuple,set,
-                    type,len,range,print,input,open,super,
-                    self,cls,property,staticmethod,classmethod},
-    sensitive    = true,
-    morestring   = [b]{"},
-    morestring   = [b]{'},
-    morecomment  = [l]{\#},
-}
-
-% C / C++  (extra keywords layer)
-\lstdefinelanguage{CPP}{
-    language     = C++,
-    morekeywords = {nullptr,override,final,constexpr,noexcept,
-                    decltype,auto,static_assert,thread_local},
-    morekeywords = [2]{std,cout,cin,endl,string,vector,map,
-                    set,pair,make_pair,push_back,size,begin,end},
-    morekeywords = [3]{\#include,\#define,\#pragma,\#ifndef,
-                    \#ifdef,\#endif},
-}
-
-% Java  (extra keywords layer)
-\lstdefinelanguage{Java8}{
-    language     = Java,
-    morekeywords = {var,record,sealed,permits,yield},
-    morekeywords = [2]{String,Integer,Double,Boolean,List,
-                    ArrayList,Map,HashMap,Set,HashSet,
-                    Optional,Stream,System,Math,Object},
-    morekeywords = [3]{@Override,@Deprecated,@FunctionalInterface,
-                    @SuppressWarnings},
-}
-
-% set the global default style
-\lstset{style=tokyonight}
-
-%================================
-% CODE TCOLORBOX WRAPPERS
-%================================
-
-% \codebox[language]{caption}{code}
-\newcommand{\codebox}[3][]{%
-    \begin{tcolorbox}[
-        enhanced, breakable,
-        colback   = tnBgDark,
-        colframe  = tnComment,
-        coltext   = tnFg,
-        boxrule   = 0.6pt,
-        arc       = 4pt,
-        left      = 0pt, right = 0pt,
-        top       = 0pt, bottom = 0pt,
-        title     = {\texttt{\textcolor{tnYellow}{#2}}},
-        attach boxed title to top left={yshift=-2mm, xshift=4mm},
-        boxed title style={
-            colback  = tnBgDark,
-            colframe = tnComment,
-            boxrule  = 0.6pt,
-            arc      = 3pt,
-        },
-        fonttitle = \bfseries\small\color{tnYellow},
-    ]
-    \lstinputlisting[style=tokyonight, language=#1]{#3}
-    \end{tcolorbox}%
-}
-
-% shortcuts
-\newcommand{\py}[1]{\lstinline[style=tokyonight,language=Python3]{#1}}
-\newcommand{\cpp}[1]{\lstinline[style=tokyonight,language=CPP]{#1}}
-\newcommand{\java}[1]{\lstinline[style=tokyonight,language=Java8]{#1}}
-\newcommand{\inlinecode}[1]{\lstinline[style=tokyonight]{#1}}  % generic inline
