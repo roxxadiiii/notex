@@ -386,12 +386,12 @@ In the introduction phase, defining your \textbf{research objectives} is the pro
 \begin{code}[python3]
     # Code Mode: Validate Objective Logic
     def validate_objective(intent, phenomenon, participants, site):
-    action_verbs = ["identify", "determine", "describe", "develop", "explore"]
-    if intent.lower() not in action_verbs:
-    return "Warning: Use a stronger action verb for clarity."
-    if not (phenomenon and participants and site):
-    return "Error: Objectives must specify what, for whom, and where."
-    return "Objective is valid and researchable."
+        action_verbs = ["identify", "determine", "describe", "develop", "explore"]
+        if intent.lower() not in action_verbs:
+            return "Warning: Use a stronger action verb for clarity."
+        if not (phenomenon and participants and site):
+            return "Error: Objectives must specify what, for whom, and where."
+        return "Objective is valid and researchable."
 \end{code}
 
 \begin{paper}
