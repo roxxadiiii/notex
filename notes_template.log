@@ -1,6 +1,6 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Arch Linux) (preloaded format=xelatex 2026.3.14)  16 MAR 2026 11:34
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Arch Linux) (preloaded format=xelatex 2026.3.14)  22 MAR 2026 13:40
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  %&-line parsing enabled.
 **notes_template.tex
 (./notes_template.tex
@@ -1438,4 +1438,4 @@ Here is how much of TeX's memory you used:
  36 hyphenation exceptions out of 8191
  98i,7n,118p,551b,1635s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on notes_template.xdv (5 pages, 361488 bytes).
+Output written on notes_template.pdf (5 pages).

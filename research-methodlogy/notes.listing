@@ -1,14 +1,10 @@
-# Code Mode
-def conductResearch(problem):
-question = defineQuestion(problem) # Must be 'how' or 'why' [51]
-literature = reviewExistingKnowledge(question) # No reinventing wheels [39]
-if literature.fullyAnswers(question):
-return "Intelligence Gathering - Not Research" [19]
-
-data = collectSystematically(question) # Methodology choice [52]
-findings = interpret(data) # Logic + Reasoning [7]
-
-if findings.isNewContribution(): # Originality check [4]
-return findings
-else:
-return "Refine and Repeat"
+    # Code Mode: Check Motivation Viability
+    def check_motivation_viability(interest_score, feasibility_score):
+        # Scale of 1-10
+        if interest_score < 5:
+            return "Warning: Boredom Alert. Research quality will suffer."
+    if feasibility_score < 5:
+        return "Error: Passion without access. You'll hit a dead end."
+    if interest_score > 8 and feasibility_score > 8:
+        return "Ideal: Intellectual Metabolism Active."
+    return "Viable: Proceed with Gusto."

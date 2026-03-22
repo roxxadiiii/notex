@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1774165542.37813 "/home/roxx/dev/notex/research-methodlogy/notes.tex" "notes.pdf" "notes" 1774165542.74476 2
-  "/home/roxx/dev/notex/research-methodlogy/notes.tex" 1774165515.93994 8966 30746cb91c3d23a68975284c946040be ""
+["pdflatex"] 1774167122.15213 "/home/roxx/dev/notex/research-methodlogy/notes.tex" "notes.pdf" "notes" 1774167122.39093 2
+  "/home/roxx/dev/notex/research-methodlogy/notes.tex" 1774166986.4442 19019 51ffffcc61d57879797cfe7ba5fe698b ""
   "/usr/share/texmf-dist/tex/generic/iftex/iftex.sty" 1772820570 7984 7dbb9280f03c0a315425f1b4f35d43ee ""
   "/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty" 1772820570 1057 525c2192b5febbd8c1f662c9468335bb ""
   "/usr/share/texmf-dist/tex/latex/amscls/amsthm.sty" 1772820570 12594 0d51ac3a545aaaa555021326ff22a6cc ""
@@ -25,8 +25,8 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1772820570 43569 fd570f2fa160877d211e859f687312ba ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1773508335 2378841 894751c821a4fd109ab73edbb1dcbec3 ""
   "main.tex" 1774153724.26067 631 336725ae02ee7f35e2061c6ff20db450 ""
-  "notes.aux" 1774165523.58058 730 6396854898fc8221adfb50c5e94af5cd "pdflatex"
-  "notes.tex" 1774165515.93994 8966 30746cb91c3d23a68975284c946040be ""
+  "notes.aux" 1774167078.34047 909 8248c937d7ca0faee9754818846a5bdc "pdflatex"
+  "notes.tex" 1774166986.4442 19019 51ffffcc61d57879797cfe7ba5fe698b ""
   "preamble/packages.tex" 1774164696.50884 1298 3989700f24afbd5a4dc4047598015744 ""
   (generated)
   "notes.aux"

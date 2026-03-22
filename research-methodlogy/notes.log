@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Arch Linux) (preloaded format=xelatex 2026.3.14)  22 MAR 2026 13:24
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Arch Linux) (preloaded format=xelatex 2026.3.14)  22 MAR 2026 13:52
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1552,16 +1552,16 @@ My plan is to forget the whole thing and hope for the best.
 \pydata@fh@0=\write8
 \openout8 = `_4358B5009C67D0E31D7FBF1663FCD3BF.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260322132419 4358B5009C67D0E31D7FBF
+runsystem(latexminted config  --timestamp 20260322135252 4358B5009C67D0E31D7FBF
 1663FCD3BF)...executed.
 
 (./_4358B5009C67D0E31D7FBF1663FCD3BF.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260322132419 4358B5009C67D0E31
+runsystem(latexminted cleanconfig  --timestamp 20260322135252 4358B5009C67D0E31
 D7FBF1663FCD3BF)...executed.
 
 
 (./_minted/friendly.style.minted)
-(./_minted/FE2072CC9A0B21AC032CCBB629AA8A27.highlight.minted) (./notes.listing
+(./_minted/35C8B88636E92A138A1932B1C94FF0F4.highlight.minted) (./notes.listing
 ! You can't use `macro parameter character #' in internal vertical mode.
 l.1 #
       Code Mode
@@ -1571,8 +1571,8 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! You can't use `macro parameter character #' in horizontal mode.
-l.3 question = defineQuestion(problem) #
-                                         Must be 'how' or 'why' [51]
+l.3     question = defineQuestion(problem) #
+                                             Must be 'how' or 'why' [51]
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
 If you're in the wrong mode, you might be able to
@@ -1587,42 +1587,310 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! You can't use `macro parameter character #' in horizontal mode.
-l.8 data = collectSystematically(question) #
-                                             Methodology choice [52]
+l.8     data = collectSystematically(question) #
+                                                 Methodology choice [52]
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
 If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! You can't use `macro parameter character #' in horizontal mode.
-l.9 findings = interpret(data) #
-                                 Logic + Reasoning [7]
+l.9     findings = interpret(data) #
+                                     Logic + Reasoning [7]
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
 If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! You can't use `macro parameter character #' in horizontal mode.
-l.11 if findings.isNewContribution(): #
-                                        Originality check [4]
+l.11     if findings.isNewContribution(): #
+                                            Originality check [4]
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
 If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
-) [4] [5] (./notes.aux)
+) [4] [5]
+Underfull \hbox (badness 2158) in paragraph at lines 320--321
+[]\TU/lmr/m/n/10 Problem Identified → \TU/lmr/bx/n/10 Problematising \TU/lmr/m/
+n/10 (Interpreting the situation) → \TU/lmr/bx/n/10 Research Question \TU/lmr/m
+/n/10 (The
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 360--361
+[]|\TU/lmr/m/n/10 Declarative/Action-oriented
+ []
+
+
+Underfull \hbox (badness 4569) in paragraph at lines 363--364
+[]|\TU/lmr/m/n/10 To define the ”itch” to be
+ []
+
+Runaway argument?
+! Paragraph ended before \pgfkeys@addpath was complete.
+<to be read again> 
+                   \par 
+l.386 \begin{code}[python3]
+                           
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \scan_stop: 
+l.386 \begin{code}[python3]
+                           
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \scan_stop: 
+l.386 \begin{code}[python3]
+                           
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+Runaway argument?
+! Paragraph ended before \pgfkeys@splitter was complete.
+<to be read again> 
+                   \par 
+l.386 \begin{code}[python3]
+                           
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+Runaway argument?
+! Paragraph ended before \pgfkeys@addpath was complete.
+<to be read again> 
+                   \par 
+l.386 \begin{code}[python3]
+                           
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \scan_stop: 
+l.386 \begin{code}[python3]
+                           
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \scan_stop: 
+l.386 \begin{code}[python3]
+                           
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+Runaway argument?
+! Paragraph ended before \pgfkeys@splitter was complete.
+<to be read again> 
+                   \par 
+l.386 \begin{code}[python3]
+                           
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+\openout7 = `notes.listing'.
+
+(./_minted/6513CDBC5B65789D0259B411373398F1.highlight.minted) (./notes.listing
+! You can't use `macro parameter character #' in internal vertical mode.
+l.1     #
+          Code Mode: Validate Objective Logic
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2     def validate_
+                     objective(intent, phenomenon, participants, site):
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+)
+! Missing $ inserted.
+<inserted text> 
+                $
+l.395 \end{code}
+                
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (11.90417pt too wide) in paragraph at lines 1--395
+\OML/cmm/m/it/10 action[]erbs \OT1/cmr/m/n/10 = [[]\OML/cmm/m/it/10 identify[];
+ []determine[]; []describe[]; []develop[]; []explore[]\OT1/cmr/m/n/10 ]\OML/cmm
+/m/it/10 ifintent:lower\OT1/cmr/m/n/10 ()\OML/cmm/m/it/10 notinaction[]erbs \OT
+1/cmr/m/n/10 :
+ []
+
+
+Overfull \hbox (25.90672pt too wide) in paragraph at lines 1--395
+\OML/cmm/m/it/10 return[]Error \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 Objectivesmus
+tspecifywhat; forwhom; andwhere:[]return[]Objectiveisvalidandresearchable:[]$ 
+ []
+
+[7] [8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 529--530
+[]|\TU/lmr/m/n/10 Low Motivation (Word-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--546
+[]|\TU/lmr/m/n/10 Endless word-spinning/Too
+ []
+
+Runaway argument?
+! Paragraph ended before \pgfkeys@addpath was complete.
+<to be read again> 
+                   \par 
+l.563 \begin{code}[python3]
+                           
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \scan_stop: 
+l.563 \begin{code}[python3]
+                           
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \scan_stop: 
+l.563 \begin{code}[python3]
+                           
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+Runaway argument?
+! Paragraph ended before \pgfkeys@splitter was complete.
+<to be read again> 
+                   \par 
+l.563 \begin{code}[python3]
+                           
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+Runaway argument?
+! Paragraph ended before \pgfkeys@addpath was complete.
+<to be read again> 
+                   \par 
+l.563 \begin{code}[python3]
+                           
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \scan_stop: 
+l.563 \begin{code}[python3]
+                           
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \scan_stop: 
+l.563 \begin{code}[python3]
+                           
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+Runaway argument?
+! Paragraph ended before \pgfkeys@splitter was complete.
+<to be read again> 
+                   \par 
+l.563 \begin{code}[python3]
+                           
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+\openout7 = `notes.listing'.
+
+\openout8 = `_4358B5009C67D0E31D7FBF1663FCD3BF.data.minted'.
+
+runsystem(latexminted highlight  --timestamp 20260322135252 4358B5009C67D0E31D7
+FBF1663FCD3BF)...executed.
+
+(./_minted/F811A5DCC58144EBE5A2341881E5B205.highlight.minted) (./notes.listing
+! You can't use `macro parameter character #' in internal vertical mode.
+l.1     #
+          Code Mode: Check Motivation Viability
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2     def check_
+                  motivation_viability(interest_score, feasibility_score):
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in math mode.
+l.3         #
+              Scale of 1-10
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+)
+! Missing $ inserted.
+<inserted text> 
+                $
+l.574 \end{code}
+                
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (62.83305pt too wide) in paragraph at lines 1--574
+\OML/cmm/m/it/10 Scaleof\OT1/cmr/m/n/10 1 \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 
+10\OML/cmm/m/it/10 ifinterest[]core < \OT1/cmr/m/n/10 5 : \OML/cmm/m/it/10 retu
+rn[]Warning \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 BoredomAlert:Researchqualitywill
+suffer:[]iffeasibility[]core <
+ []
+
+[10] [11]
+\openout8 = `_4358B5009C67D0E31D7FBF1663FCD3BF.data.minted'.
+
+runsystem(latexminted clean  --timestamp 20260322135252 4358B5009C67D0E31D7FBF1
+663FCD3BF)...executed.
+
+ (./notes.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 40350 strings out of 470148
- 887895 string characters out of 5478636
- 1632498 words of memory out of 5000000
- 68256 multiletter control sequences out of 15000+600000
+ 40517 strings out of 470148
+ 892014 string characters out of 5478636
+ 1643750 words of memory out of 5000000
+ 68413 multiletter control sequences out of 15000+600000
  634649 words of font info for 95 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  108i,10n,124p,568b,1652s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on notes.pdf (6 pages).
+Output written on notes.pdf (12 pages).

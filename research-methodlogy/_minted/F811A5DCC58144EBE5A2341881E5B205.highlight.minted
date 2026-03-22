@@ -1,0 +1,12 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+    \PYGZsh{} Code Mode: Check Motivation Viability
+    def check\PYG{n+nb}{\PYGZus{}}motivation\PYG{n+nb}{\PYGZus{}}viability(interest\PYG{n+nb}{\PYGZus{}}score, feasibility\PYG{n+nb}{\PYGZus{}}score):
+        \PYGZsh{} Scale of 1\PYGZhy{}10
+        if interest\PYG{n+nb}{\PYGZus{}}score \PYGZlt{} 5:
+            return \PYGZdq{}Warning: Boredom Alert. Research quality will suffer.\PYGZdq{}
+    if feasibility\PYG{n+nb}{\PYGZus{}}score \PYGZlt{} 5:
+        return \PYGZdq{}Error: Passion without access. You\PYGZsq{}ll hit a dead end.\PYGZdq{}
+    if interest\PYG{n+nb}{\PYGZus{}}score \PYGZgt{} 8 and feasibility\PYG{n+nb}{\PYGZus{}}score \PYGZgt{} 8:
+        return \PYGZdq{}Ideal: Intellectual Metabolism Active.\PYGZdq{}
+    return \PYGZdq{}Viable: Proceed with Gusto.\PYGZdq{}
+\end{MintedVerbatim}
